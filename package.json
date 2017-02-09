@@ -1,0 +1,22 @@
+{
+  "name": "invertedindex",
+  "version": "1.0.0",
+  "description": "search files",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-oowonikoko/checkpoint1-invertedIndex.git"
+  },
+  "author": "seunkoko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-oowonikoko/checkpoint1-invertedIndex/issues"
+  },
+  "homepage": "https://github.com/andela-oowonikoko/checkpoint1-invertedIndex#readme",
+  "dependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
