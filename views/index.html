@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inverted Index</title>
+
+    <!-- meta tags -->
+    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+    <!-- style sheets -->
+		<link rel="stylesheet" type="text/css" href="/stylesheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+
+  </head>
+
+  <body>
+    <div class='page-header'>
+      Inverted Index
+    </div>
+
+    <div class='row'>
+      <div class='search-field'>
+        <input type='text' name='search' placeholder='search'>
+      </div>
+
+      <div class='page-body'>
+        <div class='file-upload'>
+          <input id='image-file' accept='.json' type='file' multiple />
+          <!--<div class='button-file'>Upload</div>-->
+          <button type="button" class='button-file'>Upload</button>
+        </div>
+
+        <div class='table-display'>
+          <table style="width:60%">
+            <tr>
+              <th>nuffn</th>
+              <th>doc1</th> 
+              <th>doc2</th>
+            </tr>
+            <tr>
+              <td>nuffn</td>
+              <td>doc1</td> 
+              <td>doc2</td>
+            </tr>
+            <tr>
+              <td>nuffn</td>
+              <td>doc1</td> 
+              <td>doc2</td>
+            </tr>
+            <tr>
+              <td>total</td>
+              <td>X</td> 
+              <td>X</td>
+            </tr>
+          </table>
+        </div>
+    </div>
+    </div>
+
+    <!-- libraries -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
+    <!-- custom scripts -->
+		<script type="text/javascript" src="/index.js"></script>
+  </body>
+
+</html>

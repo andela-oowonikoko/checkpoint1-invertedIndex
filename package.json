@@ -4,7 +4,8 @@
   "description": "search files",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine tests/tests.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/andela-oowonikoko/checkpoint1-invertedIndex#readme",
   "dependencies": {
+    "express": "^4.14.1",
     "nodemon": "^1.11.0"
   }
 }
