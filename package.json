@@ -7,6 +7,10 @@
     "test": "jasmine tests/tests.js",
     "start": "node app.js"
   },
+  "engines": {
+    "node": "4.2.6",
+    "npm": "4.0.3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/andela-oowonikoko/checkpoint1-invertedIndex.git"
