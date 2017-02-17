@@ -1,7 +1,7 @@
 
   'use strict';
 
-	var checkIfJson = require('../public/invertedIndexTests.js');
+	// var checkIfJson = require('../public/invertedIndexTests.js');
 
 	describe("Checks if an uploaded file is .json: ", function() {
 		describe("Case for .json file been uploaded", function() {

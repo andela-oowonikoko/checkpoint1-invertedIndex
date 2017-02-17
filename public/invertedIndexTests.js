@@ -9,4 +9,4 @@ let checkIfJson = function(format) {
   return false;
 };
 	
-module.exports = checkIfJson;
+// module.exports = checkIfJson;

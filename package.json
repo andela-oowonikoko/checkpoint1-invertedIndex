@@ -4,7 +4,7 @@
   "description": "search files",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine tests/tests.js",
+    "test": "node_modules/karma/bin/karma start --single-run || true",
     "start": "node public/app.js"
   },
   "engines": {
@@ -27,8 +27,14 @@
   },
   "devDependencies": {
     "browser-sync": "^2.18.8",
+    "coveralls": "^2.11.16",
     "gulp": "^3.9.1",
-    "jasmine": "^2.5.3",
-    "jquery": "^3.1.1"
+    "karma": "^1.4.1",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-coveralls": "^1.1.2",
+    "karma-jasmine": "^1.1.0",
+    "karma-spec-reporter": "0.0.26",
+    "karma-verbose-reporter": "0.0.5"
   }
 }
