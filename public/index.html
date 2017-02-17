@@ -6,6 +6,9 @@
     <!-- meta tags -->
     <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Roboto|Roboto+Condensed|Roboto+Mono|Sansita" rel="stylesheet">
  
     <!-- style sheets -->
 		<link rel="stylesheet" type="text/css" href="/stylesheet.css">
@@ -18,7 +21,9 @@
       Inverted Index
     </div>
 
-    <div class='row'>
+    <div class='container'>
+       <!-- container starts here -->
+
       <div class='search-field'>
         <input type='text' name='search' placeholder='search'>
       </div>
@@ -26,18 +31,14 @@
       <div class='page-body'>
         <div class='file-upload'>
           <input id='image-file' accept='.json' type='file' multiple />
-          <!--<div class='button-file'>Upload</div>-->
-          <button type="button" class='button-file'>Upload</button>
+          <button type="button" class='button-file'>Upload File</button>
+          <div id='checkmark'></div>
         </div>
 
-        <div class='table-display'>
-          <table style="width:60%">
-            <tr>
-              <th>nuffn</th>
-              <th>doc1</th> 
-              <th>doc2</th>
-            </tr>
-            <tr>
+        <div class='table-display1'>
+          <table id='indexTable'>
+            <tr id='indexTableHeader'></tr>
+            <!--<tr>
               <td>nuffn</td>
               <td>doc1</td> 
               <td>doc2</td>
@@ -51,10 +52,19 @@
               <td>total</td>
               <td>X</td> 
               <td>X</td>
-            </tr>
+            </tr>-->
           </table>
         </div>
-    </div>
+
+        <!-- container ends here -->
+      </div>
+
+      <!-- page footer -->
+      <div class='page-footer'>
+        <div class='footer-info'>
+          &copy seunkoko
+        </div>
+      </div>
     </div>
 
     <!-- libraries -->

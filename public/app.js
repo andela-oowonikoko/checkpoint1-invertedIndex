@@ -6,7 +6,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
   console.log(req.url);
-  res.sendFile(path.join(__dirname + '/views/index.html'));
+  res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
 app.listen(3000, function () {
