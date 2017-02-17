@@ -29,6 +29,7 @@
     "browser-sync": "^2.18.8",
     "coveralls": "^2.11.16",
     "gulp": "^3.9.1",
+    "jasmine-core": "^2.5.2",
     "karma": "^1.4.1",
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
