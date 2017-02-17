@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/github/andela-oowonikoko/checkpoint1-invertedIndex/badge.svg?branch=chore/1003/Integrate-Coveralls)](https://coveralls.io/github/andela-oowonikoko/checkpoint1-invertedIndex?branch=master)
 [![Build Status](https://travis-ci.org/andela-oowonikoko/checkpoint1-invertedIndex.svg?branch=chore/1002/Integrate-TravisCI)](https://travis-ci.org/andela-oowonikoko/checkpoint1-invertedIndex)
 
 # checkpoint1-invertedIndex
