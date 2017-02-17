@@ -1,5 +1,5 @@
 # checkpoint1-invertedIndex
-An inverted index is an index data structure storing a mapping from content to locations or mapping of words or numbers to its location in a database file. TThe index allows a user to search for text blocks in the array that contains a specified collection of words.
+An inverted index is an index data structure storing a mapping from content to locations or mapping of words or numbers to its location in a database file. The index allows a user to search for text blocks in the array that contains a specified collection of words.
 
 Inverted index takes a JSON array of text objects and creates an index from the array. 
 
