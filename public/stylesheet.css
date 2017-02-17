@@ -1,0 +1,94 @@
+* {
+  font-family: 'Roboto Mono', monospace;
+}
+
+.page-header {
+  margin: 0px;
+  letter-spacing: 1;
+  background-color: cornflowerblue;
+  color: white;
+  height: 60px;
+  border-style: groove;
+	box-shadow: 10px 10px 5px #888888;
+  padding-top: 12px;
+  padding-left: 15%;
+  font-size: 2em;
+}
+
+.button-file {
+    background-color: cornflowerblue;
+    border: none;
+    color: white;
+    width: 20%;
+    height: 50px;
+    margin-left: 15%;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    display: inline;
+    cursor: pointer;
+}
+
+.page-body {
+  margin-top: 20px;
+}
+
+.page-footer {
+  margin-top: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 100% !important;
+  position: relative;
+}
+
+.footer-info {
+  color: white;
+  background-color: cornflowerblue;
+  text-align: center;
+  width: 100% !important;
+}
+
+.search-field {
+  margin-top: 50px;
+}
+
+.table-display1 {
+  height: 350px;
+  margin-top: 40px;
+  overflow: scroll;
+}
+
+#checkmark {
+  display: inline;
+  margin-right: 20% !important;
+  width: 10%;
+  height: 50px;
+}
+
+img {
+  height: 50px;
+  width: 10%;
+  float: left;
+}
+
+input {
+  width: 30%;
+}
+
+th {
+    background-color: cornflowerblue;
+    color: white;
+    width: 20%;
+}
+
+tr {
+  width: 20%;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+
+
