@@ -22,12 +22,16 @@
   },
   "homepage": "https://github.com/andela-oowonikoko/checkpoint1-invertedIndex#readme",
   "dependencies": {
+    "eslint-config-airbnb": "^14.1.0",
     "express": "^4.14.1",
     "nodemon": "^1.11.0"
   },
   "devDependencies": {
     "browser-sync": "^2.18.8",
     "coveralls": "^2.11.16",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-plugin-import": "^2.2.0",
     "gulp": "^3.9.1",
     "jasmine-core": "^2.5.2",
     "karma": "^1.4.1",
