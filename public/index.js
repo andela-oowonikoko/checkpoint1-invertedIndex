@@ -29,11 +29,21 @@ $(document).ready(function () {
   });
 });
 
+/**
+* checkFileFormat (it returns the file extension)
+* @param {String} uploadedFile
+* @return{String}
+*/
 function checkFileFormat(uploadedFile) {
   const array = uploadedFile.split('.');
   return array[array.length - 1];
 }
 
+/**
+* checkIfJson (it returns true if the file extension is .json)
+* @param {String} format
+* @return{Boolean}
+*/
 function checkIfJson(format) {
   if (format.toLowerCase() === 'json') {
     return true;
@@ -41,6 +51,11 @@ function checkIfJson(format) {
   return false;
 }
 
+/**
+* sortJsonObject (it takes in data which contains the content of the file and further calls the display functions)
+* @param {Object} data
+* @return
+*/
 function sortJsonObject(data) {
   let temporaryData;
   let titles = [''];
@@ -62,6 +77,11 @@ function sortJsonObject(data) {
   }
 }
 
+/**
+* containsTitleText (it checks if the content of the file contains title and text)
+* @param {Object} objectToCheck
+* @return{Boolean}
+*/
 function containsTitleText(objectToCheck) {
   if (('title' in objectToCheck) && ('text' in objectToCheck)) {
     return true;
@@ -69,6 +89,11 @@ function containsTitleText(objectToCheck) {
   return false;
 }
 
+/**
+* displayTableTitle (it displays the title of the table in the DOM)
+* @param {Object} titleArray
+* @return
+*/
 function displayTableTitle(titleArray) {
   $('#indexTableHeader').empty();
 
@@ -78,6 +103,11 @@ function displayTableTitle(titleArray) {
   }
 }
 
+/**
+* displayTableBody (it displays the body of the table in the DOM)
+* @param {Object} displayIndexedWords
+* @return
+*/
 function displayTableBody(displayIndexedWords) {
   $('.wordsRow').empty();
   $('#lastRow'). empty();
@@ -100,6 +130,11 @@ function displayTableBody(displayIndexedWords) {
   //   + '</tr>').insertAfter('#wordsRow' + (displayIndexedWords.length - 2));
 }
 
+/**
+* cleanIndexedWords (it makes every of the indexed words unique and cleans off commas and full-stops)
+* @param {String} indexedWords
+* @return{Object}
+*/
 function cleanIndexedWords(indexedWords) {
   let cleanWords = indexedWords.replace(/\.|,/g, '').split(' ');
   let uniqueWords = [];
@@ -109,6 +144,11 @@ function cleanIndexedWords(indexedWords) {
   return uniqueWords;
 }
 
+/**
+* isWordPresent (it checks if the words to check against the indexed words are present or not thereby returning a true or false)
+* @param {String, Object} indexedWords, data
+* @return{Object}
+*/
 function isWordPresent(indexedWords, data) {
   let temporarySortedWords = [];
   indexedWords.pop();
@@ -130,4 +170,14 @@ function isWordPresent(indexedWords, data) {
 
   return sortedWords;
 }
+
+/**
+* searchIndexedWords (it searches through the indexed words)
+* @param {}
+* @return{}
+*/
+function searchIndexedWords() {
+  
+}
+
 
