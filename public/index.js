@@ -55,7 +55,8 @@ function sortJsonObject(data) {
   if (containsTitleText(temporaryData)) {
     displayTableTitle(titles);
     indexedWords = cleanIndexedWords(indexedWords);
-    displayTableBody(indexedWords);
+    let displayIndexedWords = isWordPresent(indexedWords, data);
+    displayTableBody(displayIndexedWords);
   } else {
     $('<img src="/images/wrongcheck.png" />').appendTo('#checkmark');
   }
@@ -77,18 +78,26 @@ function displayTableTitle(titleArray) {
   }
 }
 
-function displayTableBody(indexedWords) {
+function displayTableBody(displayIndexedWords) {
   $('.wordsRow').empty();
+  $('#lastRow'). empty();
+  let count = 0;
+  let tableData = '';
 
-  for (let arrayIndex = (indexedWords.length - 2); arrayIndex >= 0; arrayIndex--) {
-    $('<tr class="wordsRow" id="wordsRow' + arrayIndex + '">' +
-      '<td>' + indexedWords[arrayIndex].toLowerCase() + '</td>'
-     + '</tr>').insertAfter('#indexTableHeader');
-  }
-
-  $('<tr>' +
-    '<td>TOTAL</td>'
-    + '</tr>').insertAfter('.wordsRow' + (indexedWords.length - 2));
+  displayIndexedWords.forEach(function (e) {
+    console.log(e);
+    $('<tr class="wordsRow"' + count + '> </tr>').insertAfter('#indexTableHeader');
+    for (let arrayIndex = 0; arrayIndex < displayIndexedWords[0].length; arrayIndex++) { 
+      $('<tdclass="wordsRow"' + count + '' + arrayIndex + '>' + 
+        displayIndexedWords[count][arrayIndex].toLowerCase() + 
+      '</td>').appendTo('.wordsRow' + count);
+    }
+    count++;
+  });
+ 
+  // $('<tr id="lastRow">' +
+  //   '<td>TOTAL</td>'
+  //   + '</tr>').insertAfter('#wordsRow' + (displayIndexedWords.length - 2));
 }
 
 function cleanIndexedWords(indexedWords) {
@@ -98,5 +107,27 @@ function cleanIndexedWords(indexedWords) {
     if ($.inArray(el, uniqueWords) === -1) uniqueWords.push(el);
   });
   return uniqueWords;
+}
+
+function isWordPresent(indexedWords, data) {
+  let temporarySortedWords = [];
+  indexedWords.pop();
+  let sortedWords = [indexedWords];
+
+  for (let arrayIndex1 = 0; arrayIndex1 < data.length; arrayIndex1++) {
+    let newData = cleanIndexedWords(data[arrayIndex1].text);
+
+    indexedWords.forEach(function(e) {
+      if (newData.includes(e)) {
+        temporarySortedWords.push('true');
+      }else{
+        temporarySortedWords.push('false');
+      }
+    });
+    sortedWords.push(temporarySortedWords);
+    temporarySortedWords = [];
+  }
+
+  return sortedWords;
 }
 
