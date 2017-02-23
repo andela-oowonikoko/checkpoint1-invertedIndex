@@ -2,6 +2,12 @@
 'use strict';
 
 $(document).ready(function () {
+  // search field
+  $('#searchField').addEventListener('keypress', function () {
+    searchIndexedWords();
+  }, false);
+  console.log('after search field executes');
+
   // upload button
   $('.button-file').click(function () {
     $('.button-file').css('background-color', 'cornflowerblue');
@@ -177,7 +183,34 @@ function isWordPresent(indexedWords, data) {
 * @return{}
 */
 function searchIndexedWords() {
-  
-}
+  console.log('working');
+}                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
