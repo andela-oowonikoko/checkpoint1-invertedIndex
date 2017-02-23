@@ -1,8 +1,8 @@
 [![Code Climate](https://codeclimate.com/github/andela-oowonikoko/checkpoint1-invertedIndex/badges/gpa.svg)](https://codeclimate.com/github/andela-oowonikoko/checkpoint1-invertedIndex)
-<!--[![Test Coverage](https://codeclimate.com/github/andela-oowonikoko/checkpoint1-invertedIndex/badges/coverage.svg)](https://codeclimate.com/github/andela-oowonikoko/checkpoint1-invertedIndex/coverage)-->
-<!--[![Issue Count](https://codeclimate.com/github/andela-oowonikoko/checkpoint1-invertedIndex/badges/issue_count.svg)](https://codeclimate.com/github/andela-oowonikoko/checkpoint1-invertedIndex)-->
 [![Coverage Status](https://coveralls.io/repos/github/andela-oowonikoko/checkpoint1-invertedIndex/badge.svg?branch=master)](https://coveralls.io/github/andela-oowonikoko/checkpoint1-invertedIndex?branch=master)
 [![Build Status](https://travis-ci.org/andela-oowonikoko/checkpoint1-invertedIndex.svg?branch=master)](https://travis-ci.org/andela-oowonikoko/checkpoint1-invertedIndex)
+<!--[![Test Coverage](https://codeclimate.com/github/andela-oowonikoko/checkpoint1-invertedIndex/badges/coverage.svg)](https://codeclimate.com/github/andela-oowonikoko/checkpoint1-invertedIndex/coverage)-->
+<!--[![Issue Count](https://codeclimate.com/github/andela-oowonikoko/checkpoint1-invertedIndex/badges/issue_count.svg)](https://codeclimate.com/github/andela-oowonikoko/checkpoint1-invertedIndex)-->
 
 # checkpoint1-invertedIndex
 An inverted index is an index data structure storing a mapping from content to locations or mapping of words or numbers to its location in a database file. The index allows a user to search for text blocks in the array that contains a specified collection of words.
