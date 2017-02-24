@@ -153,6 +153,29 @@
   font-size: 1.3em;
 } 
 
+#back-upload {
+  margin-top: 10px;
+  font-size: 0.8em;
+  width: 20%;
+  text-align: center;
+  color: #993300;
+  cursor: pointer;
+}
+
+#upload-error {
+  margin-top: 10px;
+  font-size: 0.8em;
+  width: 20%;
+  text-align: center;
+  color: #ff0000;
+  cursor: pointer;
+}
+
+#back-upload:hover {
+  font-size: 0.9em;
+}
+
+
 #select-file {
   width: 25%;
   height: 30px;
