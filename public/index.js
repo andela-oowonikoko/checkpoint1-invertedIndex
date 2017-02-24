@@ -31,7 +31,6 @@ $(document).ready(function () {
   });
 
   // create index button
-  // create index button
   $('#button-create-index').click(() => {
     let uploadedFileName = $('#select-file').val();
     let uploadedFile = getSelectOptionFile(uploadedFileName, uploadedFiles);
@@ -54,6 +53,20 @@ $(document).ready(function () {
     } else {
       // $('<img src="/images/wrongcheck.png" />').appendTo('#checkmark');
     }
+  });
+
+  // search indexed files 
+  $('.button-search').click(() => {
+    let uploadedFileName = $('#select-file').val();
+    let fileToSearch = getSelectOptionFile(uploadedFileName, uploadedFiles);
+
+    let reader = new FileReader();
+    reader.onload = (e) => {
+      let data = e.target.result;
+      console.log(data);
+    };
+
+    reader.readAsText(fileToSearch);
   });
 
   // back-upload clicked
