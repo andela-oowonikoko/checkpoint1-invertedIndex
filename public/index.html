@@ -16,52 +16,20 @@
 
   </head>
 
-  <body>
-    <div class='page-header'>
+  <body id='index-body'>
+    <div class='page-header' id='page-header-index'>
       Inverted Index
     </div>
 
-    <div class='container'>
-       <!-- container starts here -->
-
-      <div class='search-field'>
-        <input type='text' id='searchField' name='search' placeholder='search'>
-      </div>
-
-      <div class='page-body'>
-        <div class='file-upload'>
-          <input id='image-file' accept='.json' type='file' multiple />
-          <button type="button" class='button-file'>Upload File</button>
-          <div id='checkmark'></div>
-        </div>
-
-        <div class='table-display1'>
-          <table id='indexTable'>
-            <tr id='indexTableHeader'></tr>
-            <!--<tr>
-              <td>nuffn</td>
-              <td>doc1</td> 
-              <td>doc2</td>
-            </tr>
-            <tr>
-              <td>nuffn</td>
-              <td>doc1</td> 
-              <td>doc2</td>
-            </tr>
-            <tr>
-              <td>total</td>
-              <td>X</td> 
-              <td>X</td>
-            </tr>-->
-          </table>
-        </div>
-
-        <!-- container ends here -->
-      </div>
-    </div>
-
-    <!-- page footer -->
-    <div class='page-footer'>
+    <div id='info-div'>
+      <p class='p-header'>To Use the App</p>  
+      <p class='p-header'>--------------</p>     
+      <p>* Select the file to be uploaded (you cannot upload more than 5 json files)</p>
+      <p>* Click on the <span>upload</span> button</p>
+      <p>* Select the file to be indexed</p>
+      <p>* Click on <span>button index</span> to index file</p>
+      <p>* To search, click on the <span>search button</span> </p>
+      <a href='functions.html'><button type="button" class='button-file' id='button-start-app'>Start App</button></a>
     </div>
 
     <!-- libraries -->

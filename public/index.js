@@ -2,18 +2,22 @@
 'use strict';
 
 $(document).ready(function () {
-  // search field
-  $('#searchField').addEventListener('keypress', function () {
-    searchIndexedWords();
-  }, false);
-  console.log('after search field executes');
+  let uploadedFiles = [];
 
-  // upload button
-  $('.button-file').click(function () {
-    $('.button-file').css('background-color', 'cornflowerblue');
+  $('.file-index').hide();
+  $('.file-upload').fadeIn('slow');
 
-    // let uploadedFiles = $('#image-file')[0].files;
-    // console.log(uploadedFiles);
+  // upload file button
+  $('#button-upload-file').click(() => {
+    uploadedFiles = $('#image-file')[0].files;
+    console.log(uploadedFiles);
+
+    $('.file-upload').hide();
+    $('.file-index').fadeIn('slow');
+  });
+
+  // create index button
+  $('#button-create-index').click(() => {
     let uploadedFile = $('#image-file')[0].files[0];
     let fileFormat = checkFileFormat(uploadedFile.name);
     let checkFormat = checkIfJson(fileFormat);
@@ -23,7 +27,7 @@ $(document).ready(function () {
       // $('<img src="/images/bluecheck.png" />').appendTo('#checkmark');
 
       let reader = new FileReader();
-      reader.onload = function (e) {
+      reader.onload = (e) => {
         let data = e.target.result;
         sortJsonObject(JSON.parse(data));
       };
@@ -33,6 +37,13 @@ $(document).ready(function () {
       // $('<img src="/images/wrongcheck.png" />').appendTo('#checkmark');
     }
   });
+
+  // create index button (double click)
+  $('#button-create-index').dblclick(() => {
+    alert('double click');
+    $('.file-index').hide();
+    $('.file-upload').fadeIn('slow');
+  });
 });
 
 /**
@@ -40,29 +51,29 @@ $(document).ready(function () {
 * @param {String} uploadedFile
 * @return{String}
 */
-function checkFileFormat(uploadedFile) {
+const checkFileFormat = (uploadedFile) => {
   const array = uploadedFile.split('.');
   return array[array.length - 1];
-}
+};
 
 /**
 * checkIfJson (it returns true if the file extension is .json)
 * @param {String} format
 * @return{Boolean}
 */
-function checkIfJson(format) {
+const checkIfJson = (format) => {
   if (format.toLowerCase() === 'json') {
     return true;
   }
   return false;
-}
+};
 
 /**
 * sortJsonObject (it takes in data which contains the content of the file and further calls the display functions)
 * @param {Object} data
 * @return
 */
-function sortJsonObject(data) {
+const sortJsonObject = (data) => {
   let temporaryData;
   let titles = [''];
   let indexedWords = '';
@@ -81,40 +92,40 @@ function sortJsonObject(data) {
   } else {
     $('<img src="/images/wrongcheck.png" />').appendTo('#checkmark');
   }
-}
+};
 
 /**
 * containsTitleText (it checks if the content of the file contains title and text)
 * @param {Object} objectToCheck
 * @return{Boolean}
 */
-function containsTitleText(objectToCheck) {
+const containsTitleText = (objectToCheck) => {
   if (('title' in objectToCheck) && ('text' in objectToCheck)) {
     return true;
   }
   return false;
-}
+};
 
 /**
 * displayTableTitle (it displays the title of the table in the DOM)
 * @param {Object} titleArray
 * @return
 */
-function displayTableTitle(titleArray) {
+const displayTableTitle = (titleArray) => {
   $('#indexTableHeader').empty();
 
   for (let arrayIndex = 0; arrayIndex < titleArray.length; arrayIndex++) {
     let title = titleArray[arrayIndex].split(':')[0];
     $('#indexTableHeader').append('<th>' + title + '</th>');
   }
-}
+};
 
 /**
 * displayTableBody (it displays the body of the table in the DOM)
 * @param {Object} displayIndexedWords
 * @return
 */
-function displayTableBody(displayIndexedWords) {
+const displayTableBody = (displayIndexedWords) => {
   $('.wordsRow').empty();
   $('#lastRow'). empty();
   let count = 0;
@@ -134,28 +145,28 @@ function displayTableBody(displayIndexedWords) {
   // $('<tr id="lastRow">' +
   //   '<td>TOTAL</td>'
   //   + '</tr>').insertAfter('#wordsRow' + (displayIndexedWords.length - 2));
-}
+};
 
 /**
 * cleanIndexedWords (it makes every of the indexed words unique and cleans off commas and full-stops)
 * @param {String} indexedWords
 * @return{Object}
 */
-function cleanIndexedWords(indexedWords) {
+const cleanIndexedWords = (indexedWords) => {
   let cleanWords = indexedWords.replace(/\.|,/g, '').split(' ');
   let uniqueWords = [];
   $.each(cleanWords, function (i, el) {
     if ($.inArray(el, uniqueWords) === -1) uniqueWords.push(el);
   });
   return uniqueWords;
-}
+};
 
 /**
 * isWordPresent (it checks if the words to check against the indexed words are present or not thereby returning a true or false)
 * @param {String, Object} indexedWords, data
 * @return{Object}
 */
-function isWordPresent(indexedWords, data) {
+const isWordPresent = (indexedWords, data) => {
   let temporarySortedWords = [];
   indexedWords.pop();
   let sortedWords = [indexedWords];
@@ -175,16 +186,16 @@ function isWordPresent(indexedWords, data) {
   }
 
   return sortedWords;
-}
+};
 
 /**
 * searchIndexedWords (it searches through the indexed words)
 * @param {}
 * @return{}
 */
-function searchIndexedWords() {
+const searchIndexedWords = () => {
   console.log('working');
-}                 
+};               
 
 
 
