@@ -139,9 +139,9 @@ const displayTableBody = (displayIndexedWords) => {
         displayIndexedWords[count][arrayIndex].toLowerCase() + 
       '</td>').appendTo('.wordsRow' + count);
     }
-    count++;
+    count += 1;
   });
- 
+
   // $('<tr id="lastRow">' +
   //   '<td>TOTAL</td>'
   //   + '</tr>').insertAfter('#wordsRow' + (displayIndexedWords.length - 2));
