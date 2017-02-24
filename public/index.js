@@ -46,7 +46,7 @@ $(document).ready(function () {
   });
 });
 
-/**
+/*
 * checkFileFormat (it returns the file extension)
 * @param {String} uploadedFile
 * @return{String}
@@ -56,7 +56,7 @@ const checkFileFormat = (uploadedFile) => {
   return array[array.length - 1];
 };
 
-/**
+/*
 * checkIfJson (it returns true if the file extension is .json)
 * @param {String} format
 * @return{Boolean}
@@ -68,8 +68,9 @@ const checkIfJson = (format) => {
   return false;
 };
 
-/**
-* sortJsonObject (it takes in data which contains the content of the file and further calls the display functions)
+/*
+* sortJsonObject (it takes in data which contains the
+content of the file and further calls the display functions)
 * @param {Object} data
 * @return
 */
@@ -94,7 +95,7 @@ const sortJsonObject = (data) => {
   }
 };
 
-/**
+/*
 * containsTitleText (it checks if the content of the file contains title and text)
 * @param {Object} objectToCheck
 * @return{Boolean}
@@ -106,7 +107,7 @@ const containsTitleText = (objectToCheck) => {
   return false;
 };
 
-/**
+/*
 * displayTableTitle (it displays the title of the table in the DOM)
 * @param {Object} titleArray
 * @return
@@ -120,7 +121,7 @@ const displayTableTitle = (titleArray) => {
   }
 };
 
-/**
+/*
 * displayTableBody (it displays the body of the table in the DOM)
 * @param {Object} displayIndexedWords
 * @return
@@ -147,8 +148,9 @@ const displayTableBody = (displayIndexedWords) => {
   //   + '</tr>').insertAfter('#wordsRow' + (displayIndexedWords.length - 2));
 };
 
-/**
-* cleanIndexedWords (it makes every of the indexed words unique and cleans off commas and full-stops)
+/*
+* cleanIndexedWords (it makes every of the indexed words
+unique and cleans off commas and full-stops)
 * @param {String} indexedWords
 * @return{Object}
 */
@@ -161,8 +163,9 @@ const cleanIndexedWords = (indexedWords) => {
   return uniqueWords;
 };
 
-/**
-* isWordPresent (it checks if the words to check against the indexed words are present or not thereby returning a true or false)
+/*
+* isWordPresent (it checks if the words to check against the indexed words
+are present or not thereby returning a true or false)
 * @param {String, Object} indexedWords, data
 * @return{Object}
 */
@@ -188,13 +191,12 @@ const isWordPresent = (indexedWords, data) => {
   return sortedWords;
 };
 
-/**
+/*
 * searchIndexedWords (it searches through the indexed words)
 * @param {}
 * @return{}
 */
 const searchIndexedWords = () => {
-  console.log('working');
 };               
 
 
