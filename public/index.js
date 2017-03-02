@@ -1,7 +1,7 @@
 
 'use strict';
 
-$(document).ready(function () {
+$(document).ready(() => {
   let uploadedFiles = [];
 
   $('#upload-error').hide();
@@ -16,6 +16,7 @@ $(document).ready(function () {
     if (uploadedFiles.length < 5) {
       $('#button-upload-file').removeAttr('disabled');
       $('#upload-error').hide();
+
       uploadedFiles = $('#image-file')[0].files;
       updateSelectOptions(uploadedFiles);
     } else if (uploadedFiles.length <= 0) {
@@ -32,38 +33,40 @@ $(document).ready(function () {
 
   // create index button
   $('#button-create-index').click(() => {
-    let uploadedFileName = $('#select-file').val();
-    let uploadedFile = getSelectOptionFile(uploadedFileName, uploadedFiles);
+    const uploadedFileName = $('#select-file').val();
+    const uploadedFile = getSelectOptionFile(uploadedFileName, uploadedFiles);
     console.log(uploadedFile);
 
-    let fileFormat = checkFileFormat(uploadedFile.name);
-    let checkFormat = checkIfJson(fileFormat);
+    const checkFileExtension = checkIfJson(uploadedFileName);
 
     $('#checkmark').empty();
-    if (checkFormat) {
-      // $('<img src="/images/bluecheck.png" />').appendTo('#checkmark');
+    if (checkFileExtension) {
+      const reader = new FileReader();
 
-      let reader = new FileReader();
       reader.onload = (e) => {
-        let data = e.target.result;
+        const data = e.target.result;
         sortJsonObject(JSON.parse(data));
       };
 
       reader.readAsText(uploadedFile);
     } else {
-      // $('<img src="/images/wrongcheck.png" />').appendTo('#checkmark');
+      // condition for else statement set here
     }
   });
 
-  // search indexed files 
+  // search indexed files
   $('.button-search').click(() => {
-    let uploadedFileName = $('#select-file').val();
-    let fileToSearch = getSelectOptionFile(uploadedFileName, uploadedFiles);
+    const uploadedFileName = $('#select-file').val();
+    const fileToSearch = getSelectOptionFile(uploadedFileName, uploadedFiles);
+    const reader = new FileReader();
 
-    let reader = new FileReader();
     reader.onload = (e) => {
-      let data = e.target.result;
-      console.log(data);
+      const data = e.target.result;
+      const indexedWords = getIndexedWords(JSON.parse(data));
+      const cleanWords = cleanIndexedWords(indexedWords);
+      const wordToSearch = $('#search-field-id').val();
+
+      searchIndexedWords(cleanWords, wordToSearch);
     };
 
     reader.readAsText(fileToSearch);
@@ -77,12 +80,12 @@ $(document).ready(function () {
 });
 
 /*
-* checkFileFormat (it returns the file extension)
+* checkFileExtension (it returns the file extension)
 * @param {String} uploadedFile
 * @return{String}
 */
-const checkFileFormat = (uploadedFile) => {
-  const array = uploadedFile.split('.');
+const checkFileExtension = (uploadedFileName) => {
+  const array = uploadedFileName.split('.');
   return array[array.length - 1];
 };
 
@@ -91,11 +94,10 @@ const checkFileFormat = (uploadedFile) => {
 * @param {String} format
 * @return{Boolean}
 */
-const checkIfJson = (format) => {
-  if (format.toLowerCase() === 'json') {
-    return true;
-  }
-  return false;
+const checkIfJson = (uploadedFileName) => {
+  const fileExtension = checkFileExtension(uploadedFileName);
+
+  return fileExtension.toLowerCase() === 'json';
 };
 
 /*
@@ -105,9 +107,9 @@ const checkIfJson = (format) => {
 */
 const updateSelectOptions = (uploadedFiles) => {
   for (let arrayIndex = 0; arrayIndex < uploadedFiles.length; arrayIndex++) {
-    $('<option id="option' 
-    + (arrayIndex + 1) + '" value="' 
-    + uploadedFiles[arrayIndex].name + '">' 
+    $('<option id="option'
+    + (arrayIndex + 1) + '" value="'
+    + uploadedFiles[arrayIndex].name + '">'
     + uploadedFiles[arrayIndex].name + '</option>')
     .appendTo('#select-file');
   }
@@ -136,9 +138,9 @@ content of the file and further calls the display functions)
 * @return
 */
 const sortJsonObject = (data) => {
-  let temporaryData;
-  let titles = [''];
+  const titles = [''];
   let indexedWords = '';
+  let temporaryData;
 
   for (let arrayIndex = 0; arrayIndex < data.length; arrayIndex++) {
     temporaryData = data[arrayIndex];
@@ -148,11 +150,13 @@ const sortJsonObject = (data) => {
 
   if (containsTitleText(temporaryData)) {
     displayTableTitle(titles);
+
     indexedWords = cleanIndexedWords(indexedWords);
-    let displayIndexedWords = isWordPresent(indexedWords, data);
+    const displayIndexedWords = getFoundWords(indexedWords, data);
+
     displayTableBody(displayIndexedWords);
   } else {
-    $('<img src="/images/wrongcheck.png" />').appendTo('#checkmark');
+    // condition for else set here
   }
 };
 
@@ -177,7 +181,7 @@ const displayTableTitle = (titleArray) => {
   $('#indexTableHeader').empty();
 
   for (let arrayIndex = 0; arrayIndex < titleArray.length; arrayIndex++) {
-    let title = titleArray[arrayIndex].split(':')[0];
+    const title = titleArray[arrayIndex].split(':')[0];
     $('#indexTableHeader').append('<th>' + title + '</th>');
   }
 };
@@ -190,23 +194,46 @@ const displayTableTitle = (titleArray) => {
 const displayTableBody = (displayIndexedWords) => {
   $('.wordsRow').empty();
   $('#lastRow'). empty();
-  let count = 0;
-  let tableData = '';
 
-  displayIndexedWords.forEach(function (e) {
-    console.log(e);
-    $('<tr class="wordsRow"' + count + '> </tr>').insertAfter('#indexTableHeader');
-    for (let arrayIndex = 0; arrayIndex < displayIndexedWords[0].length; arrayIndex++) { 
-      $('<tdclass="wordsRow"' + count + '' + arrayIndex + '>' + 
-        displayIndexedWords[count][arrayIndex].toLowerCase() + 
-      '</td>').appendTo('.wordsRow' + count);
+  let count = 0;
+  const tableData = '';
+
+  displayIndexedWords.forEach((e) => {
+    console.log('----starting----');
+    $().appendTo('')
+    for (let arrayIndex = 0; arrayIndex < displayIndexedWords[0].length; arrayIndex++) {
+      console.log(displayIndexedWords[count][arrayIndex]);
+      $().appendTo('')
     }
+
+    // $('<tr class="wordsRow"' + count + '> </tr>').insertAfter('#indexTableHeader');
+    // for (let arrayIndex = 0; arrayIndex < displayIndexedWords[0].length; arrayIndex++) { 
+    //   $('<tdclass="wordsRow"' + count + '' + arrayIndex + '>' + 
+    //     displayIndexedWords[count][arrayIndex].toLowerCase() + 
+    //   '</td>').appendTo('.wordsRow' + count);
+    // }
+
     count += 1;
   });
 
   // $('<tr id="lastRow">' +
   //   '<td>TOTAL</td>'
   //   + '</tr>').insertAfter('#wordsRow' + (displayIndexedWords.length - 2));
+};
+
+/*
+* getIndexedWords (it gets the words to the indexed from the file and returns a string)
+* @param {Object} fileData
+* @return {String}
+*/
+const getIndexedWords = (fileData) => {
+  let indexedWords = '';
+
+  for (let arrayIndex = 0; arrayIndex < fileData.length; arrayIndex++) {
+    indexedWords += fileData[arrayIndex].text + ' '; 
+  }
+
+  return indexedWords;
 };
 
 /*
@@ -225,23 +252,23 @@ const cleanIndexedWords = (indexedWords) => {
 };
 
 /*
-* isWordPresent (it checks if the words to check against the indexed words
+* getFoundWords (it checks if the words to check against the indexed words
 are present or not thereby returning a true or false)
 * @param {String, Object} indexedWords, data
 * @return{Object}
 */
-const isWordPresent = (indexedWords, data) => {
+const getFoundWords = (indexedWords, data) => {
   let temporarySortedWords = [];
   indexedWords.pop();
-  let sortedWords = [indexedWords];
+  const sortedWords = [indexedWords];
 
   for (let arrayIndex1 = 0; arrayIndex1 < data.length; arrayIndex1++) {
-    let newData = cleanIndexedWords(data[arrayIndex1].text);
+    const newData = cleanIndexedWords(data[arrayIndex1].text);
 
-    indexedWords.forEach(function(e) {
+    indexedWords.forEach(e => {
       if (newData.includes(e)) {
         temporarySortedWords.push('true');
-      }else{
+      } else {
         temporarySortedWords.push('false');
       }
     });
@@ -254,13 +281,18 @@ const isWordPresent = (indexedWords, data) => {
 
 /*
 * searchIndexedWords (it searches through the indexed words)
-* @param {}
+* @param {Object, String} (cleanWords, wordToSearch)
 * @return{}
 */
-const searchIndexedWords = () => {
-};               
+const searchIndexedWords = (cleanWords, wordToSearch) => {
+  const wordToSearchArray = wordToSearch.split(' ');
 
-
+  wordToSearchArray.forEach(e => {
+    if (cleanWords.includes(e)) {
+      console.log('Includes: ' + e);
+    }
+  });
+};
 
 
 
