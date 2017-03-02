@@ -4,13 +4,27 @@
 $(document).ready(function () {
   let uploadedFiles = [];
 
+  $('#upload-error').hide();
   $('.file-index').hide();
   $('.file-upload').fadeIn('slow');
 
   // upload file button
   $('#button-upload-file').click(() => {
-    uploadedFiles = $('#image-file')[0].files;
-    console.log(uploadedFiles);
+    $('#button-upload-file').removeAttr('disabled');
+    $('#select-file').empty();
+
+    if (uploadedFiles.length < 5) {
+      $('#button-upload-file').removeAttr('disabled');
+      $('#upload-error').hide();
+      uploadedFiles = $('#image-file')[0].files;
+      updateSelectOptions(uploadedFiles);
+    } else if (uploadedFiles.length <= 0) {
+      $('#button-upload-file').attr('disabled', true);
+      $('#upload-error').show();
+    } else {
+      $('#button-upload-file').attr('disabled', true);
+      $('#upload-error').show();
+    }
 
     $('.file-upload').hide();
     $('.file-index').fadeIn('slow');
@@ -18,7 +32,10 @@ $(document).ready(function () {
 
   // create index button
   $('#button-create-index').click(() => {
-    let uploadedFile = $('#image-file')[0].files[0];
+    let uploadedFileName = $('#select-file').val();
+    let uploadedFile = getSelectOptionFile(uploadedFileName, uploadedFiles);
+    console.log(uploadedFile);
+
     let fileFormat = checkFileFormat(uploadedFile.name);
     let checkFormat = checkIfJson(fileFormat);
 
@@ -38,9 +55,22 @@ $(document).ready(function () {
     }
   });
 
-  // create index button (double click)
-  $('#button-create-index').dblclick(() => {
-    alert('double click');
+  // search indexed files 
+  $('.button-search').click(() => {
+    let uploadedFileName = $('#select-file').val();
+    let fileToSearch = getSelectOptionFile(uploadedFileName, uploadedFiles);
+
+    let reader = new FileReader();
+    reader.onload = (e) => {
+      let data = e.target.result;
+      console.log(data);
+    };
+
+    reader.readAsText(fileToSearch);
+  });
+
+  // back-upload clicked
+  $('#back-upload').click(() => {
     $('.file-index').hide();
     $('.file-upload').fadeIn('slow');
   });
@@ -67,6 +97,37 @@ const checkIfJson = (format) => {
   }
   return false;
 };
+
+/*
+* updateSelect (update the select option with the files selected)
+* @param {Object} uploadedFiles
+* @return{}
+*/
+const updateSelectOptions = (uploadedFiles) => {
+  for (let arrayIndex = 0; arrayIndex < uploadedFiles.length; arrayIndex++) {
+    $('<option id="option' 
+    + (arrayIndex + 1) + '" value="' 
+    + uploadedFiles[arrayIndex].name + '">' 
+    + uploadedFiles[arrayIndex].name + '</option>')
+    .appendTo('#select-file');
+  }
+};
+
+/*
+* getSelectOptionFile (gets the file that will be worked on)
+* @param {String, Object} (fileName, uploadedFiles)
+* @return{Object}
+*/
+const getSelectOptionFile = (fileName, uploadedFiles) => {
+  for (let arrayIndex = 0; arrayIndex < uploadedFiles.length; arrayIndex++) {
+    if (fileName === uploadedFiles[arrayIndex].name) {
+      return uploadedFiles[arrayIndex];
+    }
+  }
+
+  return '';
+};
+
 
 /*
 * sortJsonObject (it takes in data which contains the
