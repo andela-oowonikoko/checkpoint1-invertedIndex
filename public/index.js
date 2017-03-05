@@ -1,6 +1,7 @@
 $(document).ready(() => {
   let uploadedFiles = [];
 
+  $('#table-display-error').hide();
   $('#upload-error').hide();
   $('.file-index').hide();
   $('.file-upload').fadeIn('slow');
@@ -58,18 +59,28 @@ $(document).ready(() => {
 
   // search indexed files
   $('.button-search').click(() => {
-    const uploadedFileName = $('#select-file').val();
+    const uploadedFileName = $('#select-file-search').val();
     const fileToSearch = getSelectOptionFile(uploadedFileName, uploadedFiles);
     const wordToSearch = $('#search-field-id').val().split(' ');
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const data = e.target.result;
-      let invertedIndex = new InvertedIndex(JSON.parse(data));
-      const searchResult = invertedIndex.searchIndexedWords(wordToSearch);
-    };
+    if (fileToSearch.length === 0) {
+      $('#table-display-error').show();
+    } else {
+      $('#table-display-error').hide();
 
-    reader.readAsText(fileToSearch);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const data = e.target.result;
+        let invertedIndex = new InvertedIndex(JSON.parse(data));
+        const titleAndText = invertedIndex.getTitlesAndTexts();
+        const titleArray = getTitleArray(titleAndText);
+        const searchResult = invertedIndex.searchIndexedWords(wordToSearch);
+        displayTableTitle(titleArray, uploadedFileName);
+        displayTableBody(searchResult, uploadedFileName);
+      };
+
+      reader.readAsText(fileToSearch);
+    }
   });
 
   // back-upload clicked
@@ -86,10 +97,7 @@ $(document).ready(() => {
 */
 const updateSelectOptions = (uploadedFiles, idToPopulate) => {
   for (let arrayIndex = 0; arrayIndex < uploadedFiles.length; arrayIndex++) {
-    $('<option id="option'
-    + (arrayIndex + 1) + '" value="'
-    + uploadedFiles[arrayIndex].name + '">'
-    + uploadedFiles[arrayIndex].name + '</option>')
+    $(`<option id="option${arrayIndex + 1}" value="${uploadedFiles[arrayIndex].name}">${uploadedFiles[arrayIndex].name}</option>`)
     .appendTo(idToPopulate);
   }
 };
@@ -115,7 +123,7 @@ const getSelectOptionFile = (fileName, uploadedFiles) => {
  * @returns {array} - returns an array of the titles
  */
 const getTitleArray = (titleTextArray) => {
-  const arrayToReturn = ['']
+  const arrayToReturn = [''];
 
   titleTextArray[0].titles.forEach((e) => {
     arrayToReturn.push(e);
@@ -130,12 +138,20 @@ const getTitleArray = (titleTextArray) => {
 * @return
 */
 const displayTableTitle = (titleArray, uploadedFileName) => {
-  
-  $('#indexTableHeader').empty();
+  const fileName = uploadedFileName.split('.')[0];
+
+  // empties the div where the table populates
+  $('.table-display').empty();
+
+  // creates a table and appends it to the div .table-display
+  $(`<div id="${fileName}Div">${uploadedFileName}</div><table id="${fileName}Table"><tr id="${fileName}Header"></tr></table>`).appendTo('.table-display');
+
+  // empties the table headet
+  $(`#${fileName}Header`).empty();
 
   for (let arrayIndex = 0; arrayIndex < titleArray.length; arrayIndex++) {
     const title = titleArray[arrayIndex].split(':')[0];
-    $('#indexTableHeader').append('<th>' + title + '</th>');
+    $(`#${fileName}Header`).append(`<th>${title}</th>`);
   }
 };
 
@@ -145,53 +161,23 @@ const displayTableTitle = (titleArray, uploadedFileName) => {
 * @return
 */
 const displayTableBody = (contentToDisplay, uploadedFileName) => {
-  $('.wordsRow').empty();
+  const fileName = uploadedFileName.split('.')[0];
+
+  $(`.${fileName}Row`).empty();
   $('#lastRow').empty();
   let count = 1;
-  // $('<tr><td>testing</td></tr>').insertAfter('#indexTableHeader')
 
   contentToDisplay.forEach((e, index) => {
-    $('<tr class="wordsRow" id="wordsRow' + count + '"> </tr>').insertAfter('#indexTableHeader');
+    $(`<tr class="${fileName}Row" id="${fileName}Row${count}"></tr>`).insertAfter(`#${fileName}Header`);
     contentToDisplay[index].forEach((e, index) => {
       if (index > 0) {
-        if (e) {
-          $('<td><span class="glyphicon glyphicon-ok"></span></td>').appendTo('#wordsRow' + count);
-          console.log('<td><span class="glyphicon glyphicon-ok"></span></td>');
-        } else {
-          $('<td><span class="glyphicon glyphicon-remove"></span></td>').appendTo('#wordsRow' + count);
-        }
+        $(`<td><span class="glyphicon ${e ? 'glyphicon-ok' : 'glyphicon-remove'}"></span></td>`).appendTo(`#${fileName}Row${count}`);
       } else {
-        $('<td>' + e + '</td>').appendTo('#wordsRow' + count);
+        $(`<td>${e}</td>`).appendTo(`#${fileName}Row${count}`);
+        // '#' + fileName + 'Row' + count
       }
     });
 
     count += 1;
   });
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

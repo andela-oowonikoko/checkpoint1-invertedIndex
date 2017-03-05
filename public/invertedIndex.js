@@ -76,7 +76,7 @@ class InvertedIndex {
     const fileToIndex = this.getTitlesAndTexts();
 
     fileToIndex[1].texts.forEach((e) => {
-      uncleanIndexedWords += e + ' ';
+      uncleanIndexedWords += `${e} `;
     });
 
     const cleanIndexedWords = this.cleanIndexedWords(uncleanIndexedWords);
@@ -93,7 +93,9 @@ class InvertedIndex {
    */
   cleanIndexedWords(uncleanWords) {
     const cleanWords = uncleanWords.replace(/\.|,/g, '').split(' ');
-    return cleanWords.filter((element, index) => {return cleanWords.indexOf(element) === index});
+    return cleanWords.filter((element, index) => {
+      return cleanWords.indexOf(element) === index}
+    );
   }
   /**
    * contentToDisplay (it returns an Object of data to display to the user)
@@ -162,12 +164,26 @@ class InvertedIndex {
    */
   searchIndexedWords(wordsToSearch) {
     const foundWords = [];
+    const temporaryData = [];
+
     const wordsToCheck = this.displayInTableFormat();
     for (let arrayIndex = 0; arrayIndex < wordsToCheck.length; arrayIndex++) {
       if (wordsToSearch.includes(wordsToCheck[arrayIndex][0])) {
         foundWords.push(wordsToCheck[arrayIndex]);
       }
     }
+
+    if (foundWords.length === 0) {
+      for (let arrayIndex = 0; arrayIndex < wordsToCheck[0].length; arrayIndex++) {
+        if (arrayIndex === 0) {
+          temporaryData.push('no results');
+        } else {
+          temporaryData.push(false);
+        }
+      }
+      foundWords.push(temporaryData);
+    }
+
     return foundWords;
   }
 }

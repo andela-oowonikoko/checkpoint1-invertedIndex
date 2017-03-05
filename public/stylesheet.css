@@ -47,7 +47,7 @@
 }
 
 .search-field {
-  margin-left: 40%;
+  margin-left: 30%;
 }
 
 .button-search {
@@ -94,7 +94,7 @@
   margin-top: 50px;
 }
 
-.table-display1 {
+.table-display {
   margin-top: 40px;
 }
 
@@ -137,7 +137,7 @@
 
 #search-field-id {
   margin-top: 0px;
-  width: 70%;
+  width: 60%;
   height: 25px;
 }
 
@@ -179,12 +179,21 @@
   cursor: pointer;
 }
 
+#table-display-error {
+  margin-top: 50px;
+  color: #ff0000;
+  text-align: center;
+  width: 100%;
+  font-size: 2em;
+  font-weight: BOLD;
+}
+
 #back-upload:hover {
   font-size: 0.9em;
 }
 
 #select-file-search {
-  width: 16%;
+  width: 24%;
 }
 
 #select-file {
