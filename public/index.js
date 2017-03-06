@@ -59,13 +59,11 @@ $(document).ready(() => {
 
   // search indexed files
   $('.button-search').click(() => {
-    const uploadedFileName = $('#select-file-search').val();
+    let uploadedFileName = $('#select-file-search').val();
     const fileToSearch = getSelectOptionFile(uploadedFileName, uploadedFiles);
     const wordToSearch = $('#search-field-id').val().split(' ');
 
-    if (fileToSearch.length === 0) {
-      $('#table-display-error').show();
-    } else {
+    if (uploadedFileName === 'All') {
       $('#table-display-error').hide();
 
       const reader = new FileReader();
@@ -75,7 +73,26 @@ $(document).ready(() => {
         const titleAndText = invertedIndex.getTitlesAndTexts();
         const titleArray = getTitleArray(titleAndText);
         const searchResult = invertedIndex.searchIndexedWords(wordToSearch);
-        displayTableTitle(titleArray, uploadedFileName);
+        displayTableTitle(titleArray, uploadedFileName, true);
+        displayTableBody(searchResult, uploadedFileName);
+      };
+
+      for (let value of uploadedFiles) {
+        uploadedFileName = value.name;
+        reader.readAsText(value); 
+      }
+    } else if (fileToSearch.length === 0) {
+      $('#table-display-error').show();
+    } else {
+      $('#table-display-error').hide();
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const data = e.target.result;
+        let invertedIndex = new InvertedIndex(JSON.parse(data));
+        const titleAndText = invertedIndex.getTitlesAndTexts();
+        const titleArray = getTitleArray(titleAndText);
+        const searchResult = invertedIndex.searchIndexedWords(wordToSearch);
+        displayTableTitle(titleArray, uploadedFileName, false);
         displayTableBody(searchResult, uploadedFileName);
       };
 
@@ -137,11 +154,13 @@ const getTitleArray = (titleTextArray) => {
 * @param {Object} titleArray
 * @return
 */
-const displayTableTitle = (titleArray, uploadedFileName) => {
+const displayTableTitle = (titleArray, uploadedFileName, bool) => {
   const fileName = uploadedFileName.split('.')[0];
 
-  // empties the div where the table populates
-  $('.table-display').empty();
+  if (!bool) {
+    // empties the div where the table populates
+    $('.table-display').empty();
+  }
 
   // creates a table and appends it to the div .table-display
   $(`<div id="${fileName}Div">${uploadedFileName}</div><table id="${fileName}Table"><tr id="${fileName}Header"></tr></table>`).appendTo('.table-display');
