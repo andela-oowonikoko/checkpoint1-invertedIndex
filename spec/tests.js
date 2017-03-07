@@ -28,7 +28,7 @@ describe('Tests the invertedIndex.js class: ', () => {
   describe('Checks if value returned by getTitlesAndTexts() is an object', () => {
     const returnedObject = invertedIndexTrue.getTitlesAndTexts();
 
-    it('should return Object for (typeof returnedObject)', () => {
+    it('should return true for instanceof returnedObject', () => {
     expect(returnedObject instanceof Array).toBeTruthy();
     });
   });
@@ -44,7 +44,7 @@ describe('Tests the invertedIndex.js class: ', () => {
   describe('Checks if value returned by getIndexedWords() is an object', () => {
     const returnedObject = invertedIndexTrue.getIndexedWords();
 
-    it('should return Object for (typeof returnedObject)', () => {
+    it('should return true for instanceof returnedObject', () => {
     expect(returnedObject instanceof Array).toBeTruthy();
     });
   });
@@ -57,7 +57,7 @@ describe('Tests the invertedIndex.js class: ', () => {
     expect(bool).toEqual(true);
     });
 
-    it('should return Object for typeof value', () => {
+    it('should return true for instanceof returnedObject', () => {
     expect(returnedObject instanceof Array).toBeTruthy();
     });
   });
@@ -70,7 +70,7 @@ describe('Tests the invertedIndex.js class: ', () => {
     expect(bool).toEqual(true);
     });
 
-    it('should return Object for typeof value', () => {
+    it('should return true for instanceof returnedObject', () => {
     expect(returnedObject instanceof Array).toBeTruthy();
     });
   });
@@ -78,7 +78,7 @@ describe('Tests the invertedIndex.js class: ', () => {
   describe('Checks if the value returned by searchIndexedWords() is an Object', () => {
     const returnedObject = invertedIndexTrue.searchIndexedWords(['quick', 'An', 'unusual']);
 
-    it('should return Object for typeof value', () => {
+    it('should return true for instanceof returnedObject', () => {
     expect(returnedObject instanceof Array).toBeTruthy();
     });
   });
