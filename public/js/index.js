@@ -97,11 +97,14 @@ $(document).ready(() => {
   });
 });
 
+/*
+* readerForAllFiles (creates and read files)
+* @param {Object, string} value, uploadedFiles
+*/
 const readerForAllFiles = (value, uploadedFileName) => {
   const wordToSearch = $('#search-field-id').val().split(' ');
   const reader = new FileReader();
-  reader.readAsText(value); console.log('read file');
-
+  reader.readAsText(value);
   reader.onload = (e) => {
     const data = e.target.result;
     const invertedIndex = new InvertedIndex(JSON.parse(data));
@@ -119,7 +122,7 @@ const readerForAllFiles = (value, uploadedFileName) => {
 * @return{}
 */
 const updateSelectOptions = (uploadedFiles, idToPopulate) => {
-  for (let arrayIndex = 0; arrayIndex < uploadedFiles.length; arrayIndex++) {
+  for (let arrayIndex = 0; arrayIndex < uploadedFiles.length; arrayIndex += 1) {
     $(`<option id="option${arrayIndex + 1}" value="${uploadedFiles[arrayIndex].name}">${uploadedFiles[arrayIndex].name}</option>`)
     .appendTo(idToPopulate);
   }
@@ -131,7 +134,7 @@ const updateSelectOptions = (uploadedFiles, idToPopulate) => {
 * @return{Object}
 */
 const getSelectOptionFile = (fileName, uploadedFiles) => {
-  for (let arrayIndex = 0; arrayIndex < uploadedFiles.length; arrayIndex++) {
+  for (let arrayIndex = 0; arrayIndex < uploadedFiles.length; arrayIndex += 1) {
     if (fileName === uploadedFiles[arrayIndex].name) {
       return uploadedFiles[arrayIndex];
     }
@@ -142,7 +145,7 @@ const getSelectOptionFile = (fileName, uploadedFiles) => {
 
 /**
  * getTitleArray (gets the titles in the array of titles and texts passed in as an argument)
- * @param {array} titleTextArray 
+ * @param {array} titleTextArray
  * @returns {array} - returns an array of the titles
  */
 const getTitleArray = (titleTextArray) => {
