@@ -65,21 +65,11 @@ $(document).ready(() => {
 
     if (uploadedFileName === 'All') {
       $('#table-display-error').hide();
-
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const data = e.target.result;
-        let invertedIndex = new InvertedIndex(JSON.parse(data));
-        const titleAndText = invertedIndex.getTitlesAndTexts();
-        const titleArray = getTitleArray(titleAndText);
-        const searchResult = invertedIndex.searchIndexedWords(wordToSearch);
-        displayTableTitle(titleArray, uploadedFileName, true);
-        displayTableBody(searchResult, uploadedFileName);
-      };
+      $('.table-display').empty();
 
       for (let value of uploadedFiles) {
         uploadedFileName = value.name;
-        reader.readAsText(value); 
+        readerForAllFiles(value, uploadedFileName);
       }
     } else if (fileToSearch.length === 0) {
       $('#table-display-error').show();
@@ -106,6 +96,22 @@ $(document).ready(() => {
     $('.file-upload').fadeIn('slow');
   });
 });
+
+const readerForAllFiles = (value, uploadedFileName) => {
+  const wordToSearch = $('#search-field-id').val().split(' ');
+  const reader = new FileReader();
+  reader.readAsText(value); console.log('read file');
+
+  reader.onload = (e) => {
+    const data = e.target.result;
+    const invertedIndex = new InvertedIndex(JSON.parse(data));
+    const titleAndText = invertedIndex.getTitlesAndTexts();
+    const titleArray = getTitleArray(titleAndText);
+    const searchResult = invertedIndex.searchIndexedWords(wordToSearch);
+    displayTableTitle(titleArray, uploadedFileName, true);
+    displayTableBody(searchResult, uploadedFileName);
+  };
+};
 
 /*
 * updateSelect (update the select option with the files selected)
@@ -168,7 +174,7 @@ const displayTableTitle = (titleArray, uploadedFileName, bool) => {
   // empties the table headet
   $(`#${fileName}Header`).empty();
 
-  for (let arrayIndex = 0; arrayIndex < titleArray.length; arrayIndex++) {
+  for (let arrayIndex = 0; arrayIndex < titleArray.length; arrayIndex += 1) {
     const title = titleArray[arrayIndex].split(':')[0];
     $(`#${fileName}Header`).append(`<th>${title}</th>`);
   }
