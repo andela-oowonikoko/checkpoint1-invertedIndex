@@ -18,10 +18,7 @@ $(document).ready(() => {
       uploadedFiles = $('#image-file')[0].files;
       updateSelectOptions(uploadedFiles, '#select-file');
       updateSelectOptions(uploadedFiles, '#select-file-search');
-    } else if (uploadedFiles.length === 0) {
-      $('#button-upload-file').attr('disabled', true);
-      $('#upload-error').show();
-    } else {
+    }else {
       $('#button-upload-file').attr('disabled', true);
       $('#upload-error').show();
     }
@@ -147,8 +144,9 @@ const getSelectOptionFile = (fileName, uploadedFiles) => {
  */
 const getTitleArray = (titleTextArray) => {
   const arrayToReturn = [''];
+  const arrayIndex = 0;
 
-  titleTextArray[0].titles.forEach((e) => {
+  titleTextArray[arrayIndex].titles.forEach((e) => {
     arrayToReturn.push(e);
   });
 

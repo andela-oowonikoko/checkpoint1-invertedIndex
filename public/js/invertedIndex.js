@@ -74,8 +74,9 @@ class InvertedIndex {
   getIndexedWords() {
     let uncleanIndexedWords = '';
     const fileToIndex = this.getTitlesAndTexts();
+    const arrayIndex = 1;
 
-    fileToIndex[1].texts.forEach((e) => {
+    fileToIndex[arrayIndex].texts.forEach((e) => {
       uncleanIndexedWords += `${e} `;
     });
 
@@ -113,11 +114,7 @@ class InvertedIndex {
       const newIndexedWords = this.cleanIndexedWords(fileToDisplay[1].texts[arrayIndex]);
 
       indexedWords.forEach((e) => {
-        if (newIndexedWords.includes(e)) {
-          temporaryData.push(true);
-        } else {
-          temporaryData.push(false);
-        }
+        temporaryData.push(newIndexedWords.includes(e));
       });
 
       displayIndexedWords.push(temporaryData);
