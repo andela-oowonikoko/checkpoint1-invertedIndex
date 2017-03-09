@@ -30,7 +30,7 @@ Inverted index takes a JSON array of text objects and creates an index from the 
 The purpose of an inverted index is to allow user perform fast and full text search
 
 # How can I get started with the project
-* Open your browser to visit the [homepage](http://checkpoint1-invertedindex.herokuapp.com) and follow the instructions there.
+* Open your browser to visit the [homepage](http://checkpoint-invertedindex.herokuapp.com) and follow the instructions there.
 * Upload file/files to be indexed using the upload button.
 * Full text search can be made at the top of the page.
 
