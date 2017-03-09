@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node_modules/karma/bin/karma start --single-run || true",
-    "start": "gulp watch"
+    "start": "node server.js"
   },
   "engines": {
     "node": "4.2.6",
@@ -22,24 +22,37 @@
   },
   "homepage": "https://github.com/andela-oowonikoko/checkpoint1-invertedIndex#readme",
   "dependencies": {
+    "babel-preset-es2015": "^6.22.0",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.18.8",
+    "browserify": "^14.1.0",
     "eslint-config-airbnb": "^14.1.0",
     "express": "^4.14.1",
-    "nodemon": "^1.11.0"
+    "gulp": "^3.9.1",
+    "nodemon": "^1.11.0",
+    "vinyl-source-stream": "^1.1.0"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.22.0",
+    "babelify": "^7.3.0",
     "browser-sync": "^2.18.8",
+    "browserify": "^14.1.0",
     "coveralls": "^2.11.16",
     "eslint": "^3.15.0",
     "eslint-config-airbnb-base": "^11.1.0",
     "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.10.0",
     "gulp": "^3.9.1",
+    "jasmine": "^2.5.3",
     "jasmine-core": "^2.5.2",
-    "karma": "^1.4.1",
+    "karma": "^1.5.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
     "karma-coveralls": "^1.1.2",
     "karma-jasmine": "^1.1.0",
     "karma-spec-reporter": "0.0.26",
-    "karma-verbose-reporter": "0.0.5"
+    "karma-verbose-reporter": "0.0.5",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
