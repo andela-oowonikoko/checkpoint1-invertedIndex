@@ -15,6 +15,4 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.listen(port, () => {
-  console.log(`App started on http://localhost:${port}`);
-});
+app.listen(port, () => {});
