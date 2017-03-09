@@ -1,1 +1,1 @@
-web: gulp watch
+web: npm start
