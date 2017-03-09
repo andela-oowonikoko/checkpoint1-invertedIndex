@@ -18,7 +18,7 @@ $(document).ready(() => {
       uploadedFiles = $('#image-file')[0].files;
       updateSelectOptions(uploadedFiles, '#select-file');
       updateSelectOptions(uploadedFiles, '#select-file-search');
-    } else if (uploadedFiles.length <= 0) {
+    } else if (uploadedFiles.length === 0) {
       $('#button-upload-file').attr('disabled', true);
       $('#upload-error').show();
     } else {
@@ -39,12 +39,9 @@ $(document).ready(() => {
     reader.onload = (e) => {
       const data = e.target.result;
       let invertedIndex = new InvertedIndex(JSON.parse(data));
-      const checkFileExtension = invertedIndex.checkIfJson(uploadedFileName);
 
-      if (checkFileExtension) {
-        const fileContainsTitleText = invertedIndex.containsTitleText();
-
-        if (fileContainsTitleText) {
+      if (invertedIndex.checkIfJson(uploadedFileName)) {
+        if (invertedIndex.containsTitleText()) {
           const contentToDisplay = invertedIndex.displayInTableFormat();
           const titleAndText = invertedIndex.getTitlesAndTexts();
           const titleArray = getTitleArray(titleAndText);
@@ -163,10 +160,10 @@ const getTitleArray = (titleTextArray) => {
 * @param {Object} titleArray
 * @return
 */
-const displayTableTitle = (titleArray, uploadedFileName, bool) => {
+const displayTableTitle = (titleArray, uploadedFileName, isPresent) => {
   const fileName = uploadedFileName.split('.')[0];
 
-  if (!bool) {
+  if (!isPresent) {
     // empties the div where the table populates
     $('.table-display').empty();
   }
@@ -202,7 +199,6 @@ const displayTableBody = (contentToDisplay, uploadedFileName) => {
         $(`<td><span class="glyphicon ${e ? 'glyphicon-ok' : 'glyphicon-remove'}"></span></td>`).appendTo(`#${fileName}Row${count}`);
       } else {
         $(`<td>${e}</td>`).appendTo(`#${fileName}Row${count}`);
-        // '#' + fileName + 'Row' + count
       }
     });
 
