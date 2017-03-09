@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node_modules/karma/bin/karma start --single-run || true",
-    "start": "node public/app.js"
+    "start": "gulp watch"
   },
   "engines": {
     "node": "4.2.6",
