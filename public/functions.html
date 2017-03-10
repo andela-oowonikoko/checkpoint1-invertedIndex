@@ -11,7 +11,8 @@
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Roboto|Roboto+Condensed|Roboto+Mono|Sansita" rel="stylesheet">
  
     <!-- style sheets -->
-		<link rel="stylesheet" type="text/css" href="/stylesheet.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
 
   </head>
 
@@ -23,6 +24,10 @@
     <div class='functions-container'>
       <div class='page-body'>
         <div class='search-field'>
+          <select id='select-file-search'>
+            <option id='optionChoose'>Choose File</option>
+            <option id='optionAll'>All</option>
+          </select>
           <input type='text' id='search-field-id' name='search' placeholder='e.g. quick brown fox'>
           <button type='button' class='button-search'>Search</button>
         </div>
@@ -40,7 +45,8 @@
           <div id='back-upload'>< Upload</div>
         </div>
 
-        <div class='table-display1'>
+        <div class='table-display'>
+          <div id='table-display-error'>NO FILES INDEXED</div>
           <table id='indexTable'>
             <tr id='indexTableHeader'></tr>
           </table>
@@ -54,11 +60,13 @@
     </div>
 
     <!-- libraries -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 
     <!-- custom scripts -->
-		<script type="text/javascript" src="/index.js"></script>
+    <script type="text/javascript" src="/js/invertedIndex.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>  
+
   </body>
 
 </html>
