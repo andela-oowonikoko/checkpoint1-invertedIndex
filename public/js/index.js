@@ -92,7 +92,7 @@ $(document).ready(() => {
 });
 
 /*
-* readerForAllFiles (creates and read files)
+* readerForAllFiles (creates and reads files)
 * @param {Object, string} value, uploadedFiles
 */
 const readerForAllFiles = (value, uploadedFileName) => {
