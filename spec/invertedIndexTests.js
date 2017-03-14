@@ -1,11 +1,11 @@
 const truebook = require('../example.json');
 const falseBook = require('../package.json');
 
-describe('Tests the invertedIndex.js class: ', () => {
+describe('Tests the InvertedIndex class: ', () => {
   const invertedIndexTrue = new InvertedIndex(truebook);
   const invertedIndexFalse = new InvertedIndex(falseBook);
 
-  describe('Checks if file extension is json', () => {
+  describe('InvertedIndex: checkIfJson()', () => {
     it('should return true for .json file', () => {
     expect(invertedIndexTrue.checkIfJson('example.json')).toEqual(true);
     });
@@ -15,43 +15,38 @@ describe('Tests the invertedIndex.js class: ', () => {
     });
   });
 
-  describe('Checks if uploaded file contains title and text', () => {
-    it('should return true for truebook', () => {
+  describe('InvertedIndex: containsTitleText()', () => {
+    it('should return true for files containing titles and text', () => {
     expect(invertedIndexTrue.containsTitleText()).toEqual(true);
     });
 
-    it('should return false for falsebook', () => {
+    it('should return false for files containing titles and text', () => {
     expect(invertedIndexFalse.containsTitleText()).toEqual(false);
     });
   });
 
-  describe('Checks if value returned by getTitlesAndTexts() is an object',
+  describe('InvertedIndex: getTitlesAndTexts()',
   () => {
     const returnedObject = invertedIndexTrue.getTitlesAndTexts();
 
-    it('should return true for instanceof returnedObject', () => {
+    it('should return true if returned value is an Array', () => {
     expect(returnedObject instanceof Array).toBeTruthy();
     });
-  });
 
-  describe('Checks if object returned by getTitlesAndTexts() is of length 2',
-  () => {
-    const returnedObject = invertedIndexTrue.getTitlesAndTexts();
-
-    it('should return 2', () => {
+    it('should return 2 for the length of returned value', () => {
     expect(returnedObject.length).toEqual(2);
     });
   });
 
-  describe('Checks if value returned by getIndexedWords() is an object', () => {
+  describe('InvertedIndex: getIndexedWords()', () => {
     const returnedObject = invertedIndexTrue.getIndexedWords();
 
-    it('should return true for instanceof returnedObject', () => {
+    it('should return true if returned value is an Array', () => {
     expect(returnedObject instanceof Array).toBeTruthy();
     });
   });
 
-  describe('Checks the value returned by contentToDisplay()', () => {
+  describe('InvertedIndex: contentToDisplay()', () => {
     const returnedObject = invertedIndexTrue.contentToDisplay();
     const bool = (returnedObject[0].length === returnedObject[1].length);
 
@@ -59,12 +54,12 @@ describe('Tests the invertedIndex.js class: ', () => {
     expect(bool).toEqual(true);
     });
 
-    it('should return true for instanceof returnedObject', () => {
+    it('should return true is returned value is an Array', () => {
     expect(returnedObject instanceof Array).toBeTruthy();
     });
   });
 
-  describe('Checks the value returned by displayInTableFormat()', () => {
+  describe('InvertedIndex: displayInTableFormat()', () => {
     const returnedObject = invertedIndexTrue.displayInTableFormat();
     const bool = (returnedObject[0].length === returnedObject[1].length);
 
@@ -72,17 +67,17 @@ describe('Tests the invertedIndex.js class: ', () => {
     expect(bool).toEqual(true);
     });
 
-    it('should return true for instanceof returnedObject', () => {
+    it('should return true is returned value is an Array', () => {
     expect(returnedObject instanceof Array).toBeTruthy();
     });
   });
 
-  describe('Checks if the value returned by searchIndexedWords() is an Object',
+  describe('InvertedIndex: searchIndexedWords()',
   () => {
     const returnedObject = invertedIndexTrue.searchIndexedWords(
       ['quick', 'An', 'unusual']);
 
-    it('should return true for instanceof returnedObject', () => {
+    it('should return true is returned value is an Array', () => {
     expect(returnedObject instanceof Array).toBeTruthy();
     });
   });
