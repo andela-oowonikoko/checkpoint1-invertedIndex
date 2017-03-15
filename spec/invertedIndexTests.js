@@ -25,8 +25,7 @@ describe('Tests the InvertedIndex class: ', () => {
     });
   });
 
-  describe('InvertedIndex: gets titles and text of file',
-  () => {
+  describe('InvertedIndex: gets titles and text of file', () => {
     const returnedObject = invertedIndexTrue.getTitlesAndTexts();
 
     it('should return true if returned value is an Array', () => {
@@ -59,6 +58,7 @@ describe('Tests the InvertedIndex class: ', () => {
     });
   });
 
+
   describe('InvertedIndex: gets content to display in table format()', () => {
     const returnedObject = invertedIndexTrue.displayInTableFormat();
     const bool = (returnedObject[0].length === returnedObject[1].length);
@@ -72,8 +72,7 @@ describe('Tests the InvertedIndex class: ', () => {
     });
   });
 
-  describe('InvertedIndex: search indexed words',
-  () => {
+  describe('InvertedIndex: search indexed words', () => {
     const returnedObject = invertedIndexTrue.searchIndexedWords(
       ['quick', 'An', 'unusual']);
 
