@@ -5,7 +5,11 @@ describe('Tests the InvertedIndex class: ', () => {
   const invertedIndexTrue = new InvertedIndex(truebook);
   const invertedIndexFalse = new InvertedIndex(falseBook);
 
+<<<<<<< HEAD:spec/invertedIndexTests.js
   describe('InvertedIndex: checks file extension', () => {
+=======
+  describe('InvertedIndex: checkIfJson()', () => {
+>>>>>>> 77d173fb367265b05bef0a2a2676b6982549be6c:spec/invertedIndexTests.js
     it('should return true for .json file', () => {
     expect(invertedIndexTrue.checkIfJson('example.json')).toEqual(true);
     });
@@ -15,7 +19,11 @@ describe('Tests the InvertedIndex class: ', () => {
     });
   });
 
+<<<<<<< HEAD:spec/invertedIndexTests.js
   describe('InvertedIndex: checks validity of file', () => {
+=======
+  describe('InvertedIndex: containsTitleText()', () => {
+>>>>>>> 77d173fb367265b05bef0a2a2676b6982549be6c:spec/invertedIndexTests.js
     it('should return true for files containing titles and text', () => {
     expect(invertedIndexTrue.containsTitleText()).toEqual(true);
     });
@@ -25,7 +33,11 @@ describe('Tests the InvertedIndex class: ', () => {
     });
   });
 
+<<<<<<< HEAD:spec/invertedIndexTests.js
   describe('InvertedIndex: gets titles and text of file',
+=======
+  describe('InvertedIndex: getTitlesAndTexts()',
+>>>>>>> 77d173fb367265b05bef0a2a2676b6982549be6c:spec/invertedIndexTests.js
   () => {
     const returnedObject = invertedIndexTrue.getTitlesAndTexts();
 
@@ -38,7 +50,11 @@ describe('Tests the InvertedIndex class: ', () => {
     });
   });
 
+<<<<<<< HEAD:spec/invertedIndexTests.js
   describe('InvertedIndex: gets indexed words', () => {
+=======
+  describe('InvertedIndex: getIndexedWords()', () => {
+>>>>>>> 77d173fb367265b05bef0a2a2676b6982549be6c:spec/invertedIndexTests.js
     const returnedObject = invertedIndexTrue.getIndexedWords();
 
     it('should return true if returned value is an Array', () => {
@@ -46,7 +62,11 @@ describe('Tests the InvertedIndex class: ', () => {
     });
   });
 
+<<<<<<< HEAD:spec/invertedIndexTests.js
   describe('InvertedIndex: gets content to display', () => {
+=======
+  describe('InvertedIndex: contentToDisplay()', () => {
+>>>>>>> 77d173fb367265b05bef0a2a2676b6982549be6c:spec/invertedIndexTests.js
     const returnedObject = invertedIndexTrue.contentToDisplay();
     const bool = (returnedObject[0].length === returnedObject[1].length);
 
@@ -59,7 +79,11 @@ describe('Tests the InvertedIndex class: ', () => {
     });
   });
 
+<<<<<<< HEAD:spec/invertedIndexTests.js
   describe('InvertedIndex: gets content to display in table format()', () => {
+=======
+  describe('InvertedIndex: displayInTableFormat()', () => {
+>>>>>>> 77d173fb367265b05bef0a2a2676b6982549be6c:spec/invertedIndexTests.js
     const returnedObject = invertedIndexTrue.displayInTableFormat();
     const bool = (returnedObject[0].length === returnedObject[1].length);
 
@@ -72,7 +96,11 @@ describe('Tests the InvertedIndex class: ', () => {
     });
   });
 
+<<<<<<< HEAD:spec/invertedIndexTests.js
   describe('InvertedIndex: search indexed words',
+=======
+  describe('InvertedIndex: searchIndexedWords()',
+>>>>>>> 77d173fb367265b05bef0a2a2676b6982549be6c:spec/invertedIndexTests.js
   () => {
     const returnedObject = invertedIndexTrue.searchIndexedWords(
       ['quick', 'An', 'unusual']);
