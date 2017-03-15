@@ -1,10 +1,32 @@
 const truebook = require('../example.json');
 const falseBook = require('../package.json');
+const emptyBook = require('../emptyFile.json');
 
 describe('Tests the InvertedIndex class: ', () => {
   const invertedIndexTrue = new InvertedIndex(truebook);
   const invertedIndexFalse = new InvertedIndex(falseBook);
+  const InvertedIndexEmpty = new InvertedIndex(emptyBook);
 
+  describe('InvertedIndex: is instance of a class', () => {
+    it('should return true for instance of invertedIndexTrue', () => {
+    expect(invertedIndexTrue instanceof Object).toBeTruthy();
+    expect(invertedIndexFalse instanceof Object).toBeTruthy();
+    expect(InvertedIndexEmpty instanceof Object).toBeTruthy();
+    });
+  });
+
+  describe('InvertedIndex: checks if methods are defined', () => {
+    it('should check if method is defined in InvertedIndex', () => {
+    expect(invertedIndexTrue.getTitlesAndTexts).toBeDefined();
+    expect(invertedIndexTrue.checkIfJson).toBeDefined();
+    expect(invertedIndexTrue.containsTitleText).toBeDefined();
+    expect(invertedIndexTrue.contentToDisplay).toBeDefined();
+    expect(invertedIndexTrue.displayInTableFormat).toBeDefined();
+    expect(invertedIndexTrue.getIndexedWords).toBeDefined();
+    expect(invertedIndexTrue.cleanIndexedWords).toBeDefined();
+    expect(invertedIndexTrue.searchIndexedWords).toBeDefined();
+    });
+  });
 
   describe('InvertedIndex: checks file extension', () => {
     it('should return true for .json file', () => {
@@ -13,6 +35,18 @@ describe('Tests the InvertedIndex class: ', () => {
 
     it('should return false for .txt file', () => {
     expect(invertedIndexTrue.checkIfJson('example.txt')).toEqual(false);
+    });
+  });
+
+  describe('InvertedIndex: checks if file is empty', () => {
+    const returnedObject = InvertedIndexEmpty.getTitlesAndTexts();
+    let testValue = false;
+    if ((returnedObject[0].titles[0] === "") || (returnedObject[0].texts[0 ] === "")) {
+      testValue = true;
+    }
+
+    it('should return true for empty file', () => {
+    expect(testValue).toEqual(true);
     });
   });
 
