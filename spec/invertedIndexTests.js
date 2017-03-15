@@ -59,7 +59,7 @@ describe('Tests the InvertedIndex class: ', () => {
     });
   });
 
-  describe('InvertedIndex: gets content to display in table format()', () => {
+  describe('InvertedIndex: gets content to display in table format', () => {
     const returnedObject = invertedIndexTrue.displayInTableFormat();
     const bool = (returnedObject[0].length === returnedObject[1].length);
 
