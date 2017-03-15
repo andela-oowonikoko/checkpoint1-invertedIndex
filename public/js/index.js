@@ -91,10 +91,11 @@ $(document).ready(() => {
   });
 });
 
-/*
-* readerForAllFiles (creates and reads files)
-* @param {Object, string} value, uploadedFiles
-*/
+/**
+ * readerForAllFiles (creates and reads files)
+ * @param {any} value 
+ * @param {any} uploadedFileName 
+ */
 const readerForAllFiles = (value, uploadedFileName) => {
   const wordToSearch = $('#search-field-id').val().split(' ');
   const reader = new FileReader();
