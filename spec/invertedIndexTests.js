@@ -5,6 +5,7 @@ describe('Tests the InvertedIndex class: ', () => {
   const invertedIndexTrue = new InvertedIndex(truebook);
   const invertedIndexFalse = new InvertedIndex(falseBook);
 
+
   describe('InvertedIndex: checks file extension', () => {
     it('should return true for .json file', () => {
     expect(invertedIndexTrue.checkIfJson('example.json')).toEqual(true);
@@ -57,7 +58,6 @@ describe('Tests the InvertedIndex class: ', () => {
     expect(returnedObject instanceof Array).toBeTruthy();
     });
   });
-
 
   describe('InvertedIndex: gets content to display in table format()', () => {
     const returnedObject = invertedIndexTrue.displayInTableFormat();
