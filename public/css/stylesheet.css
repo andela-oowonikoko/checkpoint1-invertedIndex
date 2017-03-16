@@ -47,6 +47,7 @@
 }
 
 .search-field {
+  margin-top: 50px;
   margin-left: 30%;
 }
 
@@ -87,15 +88,15 @@
 }
 
 .file-upload {
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .file-index {
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .table-display {
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 .red {

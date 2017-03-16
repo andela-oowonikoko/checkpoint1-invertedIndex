@@ -13,7 +13,7 @@ gulp.task('browserSync', () => {
 });
 
 gulp.task('browserify', () => {
-  browserify('./spec/tests.js', { debug: true }).transform(
+  browserify('./spec/invertedIndextests.js', { debug: true }).transform(
     babel, { presets: ['es2015'] }).bundle()
         .pipe(source('app-test.js'))
         .pipe(gulp.dest('./spec'));

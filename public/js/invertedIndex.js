@@ -86,8 +86,6 @@ class InvertedIndex {
     });
 
     const cleanIndexedWords = this.cleanIndexedWords(uncleanIndexedWords);
-    // To remove the empty space at the end of the cleanIndexedWords array
-    cleanIndexedWords.pop();
     return cleanIndexedWords;
   }
   /**
@@ -98,7 +96,9 @@ class InvertedIndex {
    * @memberOf InvertedIndex
    */
   cleanIndexedWords(uncleanWords) {
-    const cleanWords = uncleanWords.replace(/\.|,/g, '').split(' ');
+    const wordsToLowercase = uncleanWords.toLowerCase();
+    const cleanWords = wordsToLowercase.trim().replace(/-/g, ' ')
+      .replace(/[^A-z\s]/g, '').split(' ');
     return cleanWords.filter((element, index) => {
       return cleanWords.indexOf(element) === index;
     });
